@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Only Survey</title>
+    <style>
+        /* Hide content for small screen sizes */
+        @media only screen and (max-width: 1024px) {
+            #survey-container {
+                display: none;
+            }
+            #mobile-warning {
+                display: block;
+                text-align: center;
+                margin-top: 50px;
+            }
+        }
+        @media only screen and (min-width: 1025px) {
+            #survey-container {
+                display: block;
+            }
+            #mobile-warning {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        // Prevent the usage of the back button
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+    </script>
+</head>
+<body>
+    <div id="survey-container">
+        <script id="shoutscript" type="text/javascript" src="https://freeonlinesurveys.com/ShoutEmbed/embed.min.js"></script>
+        <div shout-embed data-sh-form="um19SRl7" data-sh-height="800px"></div>
+    </div>
+    <div id="mobile-warning">
+        <h2>Sorry, this survey is only accessible from a desktop device.</h2>
+    </div>
+</body>
+</html>
