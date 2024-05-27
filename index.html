@@ -27,10 +27,19 @@
     </style>
     <script>
         // Prevent the usage of the back button
-        history.pushState(null, null, location.href);
-        window.onpopstate = function() {
-            history.go(1);
-        };
+        (function(window, location) {
+            history.replaceState(null, document.title, location.pathname+"#!/stealth");
+            history.pushState(null, document.title, location.pathname);
+
+            window.addEventListener("popstate", function() {
+                if(location.hash === "#!/stealth") {
+                    history.replaceState(null, document.title, location.pathname);
+                    setTimeout(function(){
+                        location.reload(); // Reload the current page
+                    }, 0);
+                }
+            }, false);
+        }(window, location));
     </script>
 </head>
 <body>
